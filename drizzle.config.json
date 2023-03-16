@@ -1,0 +1,4 @@
+{
+    "out": "./src/database/migration",
+    "schema": "./src/database/schema"
+}
