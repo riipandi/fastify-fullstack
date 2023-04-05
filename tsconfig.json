@@ -1,18 +1,24 @@
 {
-  "extends": "fastify-tsconfig",
-  "compilerOptions": {
-    "outDir": "dist",
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "strict": true,
-  },
-  "ts-node": {
-    "swc": true,
+    "extends": "fastify-tsconfig",
     "compilerOptions": {
-      "module": "CommonJS"
-    }
-  },
-  "include": [
-    "src/**/*.ts"
-  ]
+        "outDir": "dist",
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "strict": true,
+        // Drizzle
+        "target": "ES6",
+        "skipLibCheck": true,
+        "moduleResolution": "node",
+        "incremental": true,
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "."
+    },
+    "ts-node": {
+        "swc": true,
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules", "src/database/migration/*.ts"]
 }

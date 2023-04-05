@@ -1,12 +1,10 @@
-import type { NodePgDatabase } from 'drizzle-orm/node-postgres'
-import { drizzle } from 'drizzle-orm/node-postgres'
-export { sql } from 'drizzle-orm/sql';
-import { Pool } from 'pg'
+import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
+import { drizzle } from 'drizzle-orm/postgres-js'
+export { sql } from 'drizzle-orm/sql'
+import postgres from 'postgres'
 
-export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL!,
-})
+export const pgClient = postgres(process.env.DATABASE_URL!)
 
-export const db: NodePgDatabase = drizzle(pool, {
-  logger: process.env.NODE_ENV !== 'production',
+export const db: PostgresJsDatabase = drizzle(pgClient, {
+    logger: process.env.NODE_ENV !== 'production',
 })
