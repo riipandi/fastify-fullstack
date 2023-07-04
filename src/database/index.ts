@@ -1,10 +1,9 @@
-import type { PostgresJsDatabase } from 'drizzle-orm/postgres-js'
-import { drizzle } from 'drizzle-orm/postgres-js'
-export { sql } from 'drizzle-orm/sql'
+import { type PostgresJsDatabase, drizzle } from 'drizzle-orm/postgres-js'
 import postgres from 'postgres'
+import { env } from '@/env'
 
-export const pgClient = postgres(process.env.DATABASE_URL!)
+export const pgClient = postgres(env.DATABASE_URL)
 
 export const db: PostgresJsDatabase = drizzle(pgClient, {
-    logger: process.env.NODE_ENV !== 'production',
+  logger: env.NODE_ENV !== 'production',
 })

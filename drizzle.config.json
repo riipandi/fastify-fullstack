@@ -1,5 +1,0 @@
-{
-    "out": "./src/database/migration",
-    "schema": "./src/database/schema",
-    "connectionString": "postgres://postgres:postgres@127.0.0.1:5432/example?sslmode=disable"
-}

@@ -1,9 +1,24 @@
-import { FastifyPluginAsync } from 'fastify'
+import { FastifyPluginAsync, RouteShorthandOptions } from 'fastify'
 
-const root: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
-    fastify.get('/', async function (request, reply) {
-        return { root: true }
-    })
+const opts: RouteShorthandOptions = {
+  schema: {
+    response: {
+      200: {
+        type: 'object',
+        properties: {
+          pong: {
+            type: 'string',
+          },
+        },
+      },
+    },
+  },
+}
+
+const root: FastifyPluginAsync = async (fastify, _opts): Promise<void> => {
+  fastify.get('/', opts, async (_request, _reply) => {
+    return { pong: 'it worked!' }
+  })
 }
 
 export default root
