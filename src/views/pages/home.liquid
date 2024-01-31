@@ -2,4 +2,7 @@
 
 {% block content %}
 <h1>Halo {{ name | capitalize}}</h1>
+<button hx-get="/api" hx-swap="outerHTML">
+  Click Me
+</button>
 {% endblock %}
