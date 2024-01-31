@@ -1,7 +1,10 @@
+import { join } from 'node:path'
+
 import Fastify, { FastifyInstance, FastifyPluginAsync } from 'fastify'
 import AutoLoad, { AutoloadPluginOptions } from '@fastify/autoload'
 import fastifyRequestLogger from '@mgcrea/fastify-request-logger'
-import { join } from 'path'
+
+import fastifyFastrue from '@fastrue/fastify'
 
 export type AppOptions = {
   // Place your custom options for app below here.
@@ -25,6 +28,11 @@ const server: FastifyInstance = Fastify({
 
 // Register fastify plugins
 server.register(fastifyRequestLogger)
+
+// Register fastrue plugins
+server.register(fastifyFastrue, {
+  routePrefix: '/auth',
+})
 
 server.register(AutoLoad, {
   dir: join(__dirname, 'plugins'),
