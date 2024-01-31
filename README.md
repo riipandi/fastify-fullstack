@@ -50,9 +50,9 @@ that will then be used in the rest of your application.
 
 Check out:
 
--   [The hitchhiker's guide to plugins](https://www.fastify.io/docs/latest/Guides/Plugins-Guide/)
--   [Fastify decorators](https://www.fastify.io/docs/latest/Reference/Decorators/).
--   [Fastify lifecycle](https://www.fastify.io/docs/latest/Reference/Lifecycle/).
+- [The hitchhiker's guide to plugins](https://www.fastify.io/docs/latest/Guides/Plugins-Guide/)
+- [Fastify decorators](https://www.fastify.io/docs/latest/Reference/Decorators/).
+- [Fastify lifecycle](https://www.fastify.io/docs/latest/Reference/Lifecycle/).
 
 ## Learn More
 

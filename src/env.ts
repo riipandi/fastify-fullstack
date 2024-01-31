@@ -19,8 +19,10 @@ export const env = zennv({
   schema: z.object({
     NODE_ENV: z.enum(ENV_VALUES).default("development"),
     PORT: z.number().default(3000),
-    HOST: z.string().default("0.0.0.0"),
+    HOST: z.string().default("127.0.0.1"),
     DATABASE_URL: z.string(),
     DATABASE_SSL: z.boolean().default(false),
+    APP_SECRET_KEY: z.string(),
+    APP_BASE_URL: z.string().default("http://localhost:3000"),
   }),
 });

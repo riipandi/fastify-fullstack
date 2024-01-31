@@ -3,9 +3,13 @@
     "organizeImports": {
         "enabled": true
     },
+    "files": {
+        "ignoreUnknown": true,
+        "include": ["**/*.js", "**/*.cjs", "**/*.ts", "**/*.css", "**/*.json"],
+        "ignore": ["node_modules", "dist", ".nyc_output", ".husky"]
+    },
     "linter": {
         "enabled": true,
-        "ignore": ["dist", "node_modules"],
         "rules": {
             "recommended": true,
             "suspicious": {
@@ -24,8 +28,7 @@
         "formatWithErrors": false,
         "indentStyle": "space",
         "indentWidth": 2,
-        "lineWidth": 100,
-        "ignore": ["dist", "node_modules"]
+        "lineWidth": 100
     },
     "javascript": {
         "formatter": {

@@ -1,10 +1,10 @@
 import { join } from "node:path";
-
 import AutoLoad, { AutoloadPluginOptions } from "@fastify/autoload";
 import fastifyRequestLogger from "@mgcrea/fastify-request-logger";
-import Fastify, { FastifyInstance, FastifyPluginAsync } from "fastify";
+import Fastify, { FastifyInstance } from "fastify";
 
 import fastifyFastrue from "@fastrue/fastify";
+import { env } from "./env";
 
 export type AppOptions = {
   // Place your custom options for app below here.
@@ -54,7 +54,7 @@ server.setNotFoundHandler(async (request, reply) => {
 
 const start = async () => {
   try {
-    await server.listen({ port: 3000 });
+    await server.listen({ port: env.PORT, host: env.HOST });
     const address = server.server.address();
     const port = typeof address === "string" ? address : address?.port;
   } catch (err) {

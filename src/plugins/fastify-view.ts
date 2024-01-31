@@ -1,4 +1,5 @@
-import path, { resolve } from "node:path";
+import { resolve } from "node:path";
+import { env } from "@/env";
 import fastifyView, { FastifyViewOptions } from "@fastify/view";
 import fp from "fastify-plugin";
 import { Liquid } from "liquidjs";
@@ -7,7 +8,7 @@ export default fp<FastifyViewOptions>(async (fastify) => {
   fastify.register(fastifyView, {
     engine: {
       liquid: new Liquid({
-        root: path.join(__dirname, "../views"),
+        root: resolve("src/views"),
         layouts: resolve("src/views/layout"),
         cache: process.env.NODE_ENV === "production",
         extname: ".liquid",
@@ -17,7 +18,7 @@ export default fp<FastifyViewOptions>(async (fastify) => {
     includeViewExtension: true,
     defaultContext: {
       // Inject some context to your templates.
-      baseUrl: "http://localhost:3000",
+      baseUrl: env.APP_BASE_URL,
     },
     templates: resolve("src/views/pages"),
     options: {},
