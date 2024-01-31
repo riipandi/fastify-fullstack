@@ -57,3 +57,6 @@ testem.log
 # envars
 .env.*
 !.env.example
+
+# project files
+/public/assets

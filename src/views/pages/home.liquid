@@ -1,8 +1,10 @@
 {% layout "app" %}
 
 {% block content %}
-<h1>Halo {{ name | capitalize}}</h1>
-<button hx-get="/api" hx-swap="outerHTML">
-  Click Me
-</button>
+<div class="p-8">
+  <h1>Halo {{ name | capitalize}}</h1>
+  <button hx-get="/api" hx-swap="outerHTML">
+    Click Me
+  </button>
+</div>
 {% endblock %}
