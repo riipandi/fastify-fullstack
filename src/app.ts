@@ -55,8 +55,6 @@ server.setNotFoundHandler(async (request, reply) => {
 const start = async () => {
   try {
     await server.listen({ port: env.PORT, host: env.HOST });
-    const address = server.server.address();
-    const port = typeof address === "string" ? address : address?.port;
   } catch (err) {
     server.log.error(err);
     process.exit(1);

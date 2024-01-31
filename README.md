@@ -1,4 +1,4 @@
-# Fastify Drizzle Playground
+# Fastify FullStack
 
 This project was bootstrapped with Fastify-CLI.
 

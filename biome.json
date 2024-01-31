@@ -13,7 +13,8 @@
         "rules": {
             "recommended": true,
             "suspicious": {
-                "noCommentText": "off"
+                "noCommentText": "off",
+                "noExplicitAny": "off"
             },
             "complexity": {
                 "noBannedTypes": "off"

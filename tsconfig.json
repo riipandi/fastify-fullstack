@@ -1,4 +1,5 @@
 {
+    "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
         "allowJs": true,
         "baseUrl": ".",
@@ -19,6 +20,12 @@
         "typeRoots": ["./node_modules/@types"],
         "paths": {
             "@/*": ["./src/*"]
+        }
+    },
+    "ts-node": {
+        "swc": true,
+        "compilerOptions": {
+            "module": "CommonJS"
         }
     },
     "include": ["src/**/*.ts"],

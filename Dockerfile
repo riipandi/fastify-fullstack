@@ -48,7 +48,7 @@ RUN --mount=type=cache,id=cache-pnpm,target=/pnpm/store pnpm install \
 # Production image, copy build output files and run the application
 # -----------------------------------------------------------------------------
 FROM node:${NODE_VERSION}-alpine AS runner
-LABEL org.opencontainers.image.source="https://github.com/riipandi/fastify-drizzle-playground"
+LABEL org.opencontainers.image.source="https://github.com/riipandi/fastify-playground"
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 WORKDIR /srv
