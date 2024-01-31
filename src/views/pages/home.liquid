@@ -1,8 +1,5 @@
-<html>
-  <head>
-    <title>Home</title>
-  </head>
-  <body>
-    <h1>Halo {{ name | capitalize}}</h1>
-  </body>
-</html>
+{% layout "app" %}
+
+{% block content %}
+<h1>Halo {{ name | capitalize}}</h1>
+{% endblock %}
