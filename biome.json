@@ -7,7 +7,16 @@
         "enabled": true,
         "ignore": ["dist", "node_modules"],
         "rules": {
-            "recommended": true
+            "recommended": true,
+            "suspicious": {
+                "noCommentText": "off"
+            },
+            "complexity": {
+                "noBannedTypes": "off"
+            },
+            "style": {
+                "noUnusedTemplateLiteral": "off"
+            }
         }
     },
     "formatter": {

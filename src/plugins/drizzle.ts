@@ -12,7 +12,6 @@ declare module "fastify" {
   }
 }
 
-// biome-ignore lint/complexity/noBannedTypes: <explanation>
 export type DrizzlePluginOptions = {};
 
 const drizzlePlugin: FastifyPluginAsync<DrizzlePluginOptions> = fp(async (fastify) => {
