@@ -3,7 +3,7 @@ import AutoLoad, { AutoloadPluginOptions } from "@fastify/autoload";
 import fastifyRequestLogger from "@mgcrea/fastify-request-logger";
 import Fastify, { FastifyInstance } from "fastify";
 
-import fastifyFastrue from "@fastrue/fastify";
+// import fastifyFastrue from "@fastrue/fastify";
 import { env } from "./env";
 
 export type AppOptions = {
@@ -30,9 +30,9 @@ const server: FastifyInstance = Fastify({
 server.register(fastifyRequestLogger);
 
 // Register fastrue plugins
-server.register(fastifyFastrue, {
-  routePrefix: "/auth",
-});
+// server.register(fastifyFastrue, {
+//   routePrefix: "/auth",
+// });
 
 server.register(AutoLoad, {
   dir: join(__dirname, "plugins"),

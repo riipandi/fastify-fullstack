@@ -10,12 +10,12 @@
         "output_css": "./public/assets/styles.css"
     },
     "scripts": {
+        "dev": "wireit",
+        "build": "wireit",
+        "start": "wireit",
         "build:css": "tailwindcss -m -i $npm_package_config_input_css -o $npm_package_config_output_css",
         "build:css:watch": "tailwindcss -w -m -i $npm_package_config_input_css -o $npm_package_config_output_css",
-        "build:watch": "rimraf dist && swc src -w --out-dir dist",
-        "build": "rimraf dist public/assets && pnpm build:css && swc src -d dist",
-        "dev": "concurrently --raw --hide 0 \"pnpm build:css:watch\" \"pnpm build:watch\" \"pnpm start:watch\"",
-        "start": "node dist/src/app.js",
+        "build:watch": "swc src -w --out-dir dist --delete-dir-on-start",
         "start:watch": "node --watch-path=dist dist/src/app.js",
         "pre-dev": "docker compose up -d",
         "pre-commit": "sh .husky/pre-commit",
@@ -25,7 +25,7 @@
         "docker:build": "docker build -f Dockerfile . -t $npm_package_name:latest -t $npm_package_name:$npm_package_version",
         "docker:run": "docker run --rm -it -p 3000:3000 --env-file .env --name $npm_package_name $npm_package_name:latest",
         "generate-key": "openssl rand -base64 500 | tr -dc 'a-zA-Z0-9' | fold -w 40 | head -n 1",
-        "cleanup": "docker compose down --remove-orphans --volumes && rimraf dist",
+        "cleanup": "docker compose down --remove-orphans --volumes",
         "preinstall": "pnpm dlx only-allow pnpm",
         "prepare": "husky || true",
         "check": "biome check --apply .",
@@ -33,6 +33,46 @@
         "lint": "biome lint --apply .",
         "update-deps": "npm-check-updates --configFileName .ncurc.json",
         "test": "jest --testPathIgnorePatterns \"/(routes|database)/\""
+    },
+    "wireit": {
+        "build": {
+            "command": "swc src -d dist --delete-dir-on-start",
+            "clean": true,
+            "dependencies": [
+                "build:css"
+            ],
+            "output": [
+                "dist/**"
+            ]
+        },
+        "dev": {
+            "command": "tsx watch --watch-path=src ./src/app.ts",
+            "files": [
+                "src/**/*.{css,ts}",
+                "tsconfig.json"
+            ],
+            "dependencies": [
+                {
+                    "script": "pre-dev",
+                    "cascade": false
+                }
+            ]
+        },
+        "start": {
+            "command": "node dist/src/app.js",
+            "service": {
+                "readyWhen": {
+                    "lineMatches": "Server listening at \\d+"
+                }
+            },
+            "files": [
+                "dist/src/app.js"
+            ],
+            "dependencies": [
+                "build:css",
+                "build"
+            ]
+        }
     },
     "dependencies": {
         "@fastify/autoload": "^5.8.0",
@@ -43,11 +83,11 @@
         "@mgcrea/fastify-request-logger": "^1.4.0",
         "@mgcrea/pino-pretty-compact": "^1.3.0",
         "dotenv": "^16.4.1",
+        "fastify": "^4.26.0",
         "fastify-cli": "^6.1.0",
         "fastify-plugin": "^4.5.1",
-        "fastify": "^4.26.0",
-        "kysely-postgres-js": "^2.0.0",
         "kysely": "^0.27.2",
+        "kysely-postgres-js": "^2.0.0",
         "liquidjs": "^10.10.0",
         "postgres": "^3.4.3",
         "ts-node": "^10.9.2",
@@ -66,17 +106,18 @@
         "@types/fs-extra": "^11.0.4",
         "@types/node": "^20.11.13",
         "autoprefixer": "^10.4.17",
-        "concurrently": "^8.2.2",
         "fs-extra": "^11.2.0",
         "husky": "^9.0.7",
         "jest": "^29.7.0",
         "npm-check-updates": "^16.14.14",
         "postcss": "^8.4.33",
         "rimraf": "^5.0.5",
-        "tailwindcss-animate": "^1.0.7",
         "tailwindcss": "^3.4.1",
+        "tailwindcss-animate": "^1.0.7",
         "tap": "^18.7.0",
-        "typescript": "^4.6.3"
+        "tsx": "^4.7.0",
+        "typescript": "^4.6.3",
+        "wireit": "^0.14.4"
     },
     "engines": {
         "node": ">=18.17.1"

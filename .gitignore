@@ -16,6 +16,7 @@ lib-cov
 .c9/
 .pnp/
 .pnp.js
+.wireit/
 *.sqlite3
 *.db
 *.pem
