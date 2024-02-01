@@ -3,8 +3,16 @@
 {% block content %}
 <div class="p-8">
   <h1>Halo {{ name | capitalize}}</h1>
-  <button hx-get="/api" hx-swap="outerHTML">
-    Click Me
-  </button>
+  <a href="/about">About Page</a>
+
+  <div class="mt-4">
+    <button
+      type="button"
+      class="bg-blue-500 hover:bg-blue-500/90 text-white px-2.5 py-1 rounded-md"
+      hx-get="/api" hx-swap="outerHTML"
+    >
+      Click Me
+    </button>
+  </div>
 </div>
 {% endblock %}

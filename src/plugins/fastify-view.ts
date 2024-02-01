@@ -1,8 +1,8 @@
 import { resolve } from "node:path";
-import { env } from "@/env";
 import fastifyView, { FastifyViewOptions } from "@fastify/view";
 import fp from "fastify-plugin";
 import { Liquid } from "liquidjs";
+import { env } from "../env";
 
 export default fp<FastifyViewOptions>(async (fastify) => {
   fastify.register(fastifyView, {

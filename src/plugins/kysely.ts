@@ -1,8 +1,8 @@
-import { Database, db } from "@/database/client";
-import { env } from "@/env";
 import { FastifyPluginAsync } from "fastify";
 import fp from "fastify-plugin";
 import { Kysely } from "kysely";
+import { Database, db } from "../database/client";
+import { env } from "../env";
 
 declare module "fastify" {
   interface FastifyInstance {

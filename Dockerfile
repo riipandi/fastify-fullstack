@@ -78,4 +78,4 @@ ENV PORT 3000
 EXPOSE 3000
 
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["/usr/local/bin/node", "dist/src/app.js"]
+CMD ["/usr/local/bin/node", "dist/app.js"]
