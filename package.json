@@ -21,7 +21,7 @@
         "docker:build": "docker build -f Dockerfile . -t $npm_package_name:latest -t $npm_package_name:$npm_package_version",
         "docker:run": "docker run --rm -it -p 3000:3000 --env-file .env --name $npm_package_name $npm_package_name:latest",
         "generate-key": "openssl rand -base64 500 | tr -dc 'a-zA-Z0-9' | fold -w 40 | head -n 1",
-        "cleanup": "docker compose down --remove-orphans --volumes",
+        "cleanup": "docker compose down --remove-orphans --volumes && rimraf dist public/assets",
         "preinstall": "pnpm dlx only-allow pnpm",
         "prepare": "husky || true",
         "check": "biome check --apply .",
